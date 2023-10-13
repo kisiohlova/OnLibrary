@@ -6,13 +6,13 @@ RSpec.describe "books/index", type: :view do
       Book.create!(
         title: "Title",
         author: "Author",
-        isbn: "Isbn",
+        isbn: "0123456789",
         description: "MyText"
       ),
       Book.create!(
         title: "Title",
         author: "Author",
-        isbn: "Isbn",
+        isbn: "1123456789",
         description: "MyText"
       )
     ])
