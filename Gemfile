@@ -27,8 +27,6 @@ gem "stimulus-rails"
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem "tailwindcss-rails"
 
-gem 'faker', '~> 3.2', '>= 3.2.1'
-
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -55,6 +53,9 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 
   gem "rspec-rails"
+  gem 'faker', '~> 3.2', '>= 3.2.1'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 group :development do
@@ -67,4 +68,3 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-
