@@ -177,6 +177,9 @@ GEM
     rspec-support (3.12.1)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
+    simple_form (5.3.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -222,6 +225,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   rspec-rails
   shoulda-matchers (~> 5.0)
+  simple_form
   sprockets-rails
   stimulus-rails
   tailwindcss-rails

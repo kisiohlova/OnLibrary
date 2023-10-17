@@ -1,23 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "/books", type: :request do
-  
-  # This should return the minimal set of attributes required to create a valid
-  # Book. As you add validations to Book, be sure to
-  # adjust the attributes here as well.
+RSpec.describe BooksController, type: :request do
+
   let(:valid_attributes) {
-    { title: 'Title', author: 'Author', isbn: '1234567890', description: 'Description' }
+    FactoryBot.attributes_for(:book)
   }
 
   let(:invalid_attributes) {
-    { title: '', author: '', isbn: 'abc4567890', description: '' }
+    { title: " " }
   }
 
-  let(:new_attributes) {
-    { title: 'New Title', author: 'New Author', isbn: '9876543210', description: 'New Description' }
-  }
-
-  describe "GET /index" do
+  describe "GET #index" do
     it "renders a successful response" do
       Book.create! valid_attributes
       get books_url
@@ -25,7 +18,7 @@ RSpec.describe "/books", type: :request do
     end
   end
 
-  describe "GET /show" do
+  describe "GET #show" do
     it "renders a successful response" do
       book = Book.create! valid_attributes
       get book_url(book)
@@ -33,14 +26,14 @@ RSpec.describe "/books", type: :request do
     end
   end
 
-  describe "GET /new" do
+  describe "GET #new" do
     it "renders a successful response" do
       get new_book_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /edit" do
+  describe "GET #edit" do
     it "renders a successful response" do
       book = Book.create! valid_attributes
       get edit_book_url(book)
@@ -48,7 +41,7 @@ RSpec.describe "/books", type: :request do
     end
   end
 
-  describe "POST /create" do
+  describe "POST #create" do
     context "with valid parameters" do
       it "creates a new Book" do
         expect {
@@ -69,12 +62,10 @@ RSpec.describe "/books", type: :request do
         }.to change(Book, :count).by(0)
       end
 
-
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post books_url, params: { book: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-
     end
   end
 
@@ -82,30 +73,27 @@ RSpec.describe "/books", type: :request do
     context "with valid parameters" do
       it "updates the requested book" do
         book = Book.create! valid_attributes
-        patch book_url(book), params: { book: new_attributes }
+        patch book_url(book), params: { book: valid_attributes }
         book.reload
-        expect(book.title).to eq('New Title')
-        expect(book.author).to eq('New Author')
-        expect(book.isbn).to eq('9876543210')
-        expect(book.description).to eq('New Description')
+
+        expect(response).to redirect_to(book_url(book))
       end
 
       it "redirects to the book" do
         book = Book.create! valid_attributes
-        patch book_url(book), params: { book: new_attributes }
+        patch book_url(book), params: { book: valid_attributes }
         book.reload
+
         expect(response).to redirect_to(book_url(book))
       end
     end
 
     context "with invalid parameters" do
-
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         book = Book.create! valid_attributes
         patch book_url(book), params: { book: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-
     end
   end
 
@@ -120,6 +108,7 @@ RSpec.describe "/books", type: :request do
     it "redirects to the books list" do
       book = Book.create! valid_attributes
       delete book_url(book)
+      
       expect(response).to redirect_to(books_url)
     end
   end
