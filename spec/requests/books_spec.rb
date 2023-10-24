@@ -1,88 +1,81 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe BooksController, type: :request do
-
-  let(:valid_params) {
-    FactoryBot.attributes_for(:book)
-  }
-
-  let(:invalid_params) {
-    { title: " " }
-  }
-
-  let(:new_params) {
-    FactoryBot.attributes_for(:book)
-  }
+  let!(:book) { FactoryBot.create :book }
+  let(:valid_attributes) { FactoryBot.attributes_for(:book) }
+  let(:invalid_attributes) { { title: "" } }
+  let(:new_attributes) { attributes_for(:book) }
 
   describe "GET #index" do
-    it "renders a successful response" do
-      Book.create! valid_params
-      
-      get books_url
+    it "is successful" do
+      get books_path
       expect(response).to be_successful
     end
   end
 
   describe "GET #show" do
-    it "renders a successful response" do
-      book = Book.create! valid_params
-
-      get book_url(book)
+    it "is successful" do
+      get book_path(book)
       expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
-    it "renders a successful response" do
-      get new_book_url
+    it "is successful" do
+      get new_book_path
       expect(response).to be_successful
     end
   end
 
   describe "GET #edit" do
-    it "renders a successful response" do
-      book = Book.create! valid_params
-
-      get edit_book_url(book)
+    it "is successful" do
+      get edit_book_path(book)
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid parameters" do
-      it "creates a new Book" do
-        expect {
-          post books_url, params: { book: valid_params }
-        }.to change(Book, :count).by(1)
+      it "is successful" do
+        expect do
+          post books_path, params: { book: valid_attributes }
+        end.to change(Book, :count).by(1)
+
+        expect(response).to redirect_to(book_url(Book.last))
+        expect(flash[:notice]).to eq("Book was successfully created.")
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Book" do
-        expect {
-          post books_url, params: { book: invalid_params }
-        }.to change(Book, :count).by(0)
+      it "is not successful" do
+        expect do
+          post books_path, params: { book: invalid_attributes }
+        end.to change(Book, :count).by(0)
+
+        expect(response).to be_unprocessable
       end
     end
   end
 
   describe "PATCH #update" do
     context "with valid parameters" do
-      it "updates the requested book" do
-        book = Book.create! valid_params
-
-        patch book_url(book), params: { book: new_params }
-        book.reload
+      it "is successful" do
+        expect do
+          patch book_path(book), params: { book: new_attributes }
+          book.reload
+        end.to change(book, :title).to(new_attributes[:title])
 
         expect(response).to redirect_to(book_url(book))
+        expect(flash[:notice]).to eq("Book was successfully updated.")
       end
     end
 
     context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        book = Book.create! valid_params
+      it "is unprocessable" do
+        expect do
+          patch book_path(book), params: { book: invalid_attributes }
+        end.not_to change(book, :title)
 
-        patch book_url(book), params: { book: invalid_params }
         expect(response).to be_unprocessable
       end
     end
@@ -90,11 +83,12 @@ RSpec.describe BooksController, type: :request do
 
   describe "DELETE #destroy" do
     it "destroys the requested book" do
-      book = Book.create! valid_params
+      expect do
+        delete book_path(book)
+      end.to change(Book, :count).by(-1)
 
-      expect {
-        delete book_url(book)
-      }.to change(Book, :count).by(-1)
+      expect(response).to redirect_to(books_path)
+      expect(flash[:notice]).to eq("Book was successfully destroyed.")
     end
   end
 end
