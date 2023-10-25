@@ -36,9 +36,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = resource
-
-    @book.destroy
+    resource.destroy
 
     redirect_to books_path, notice: "Book was successfully destroyed.", status: :see_other
   end
