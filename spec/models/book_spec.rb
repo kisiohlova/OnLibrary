@@ -10,7 +10,10 @@ RSpec.describe Book, type: :model do
     it { is_expected.to allow_value("978-3-16-148410-0").for(:isbn) }
     it { is_expected.not_to allow_value("").for(:title) }
     it { is_expected.not_to allow_value("").for(:author) }
-    it { is_expected.not_to allow_value("a").for(:isbn) }
+    it { is_expected.not_to allow_value("").for(:isbn) }
+    it { is_expected.not_to allow_value("Au%thor").for(:author) }
+    it { is_expected.not_to allow_value("B**ook").for(:title) }
+    it { is_expected.not_to allow_value("h&jk&!").for(:isbn) }
 
     describe "validation" do
       subject { Book.new(title: "Book", author: "Author", isbn: "978-3-16-148410-0") }
