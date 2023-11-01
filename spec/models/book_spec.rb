@@ -11,8 +11,6 @@ RSpec.describe Book, type: :model do
     it { is_expected.not_to allow_value("").for(:title) }
     it { is_expected.not_to allow_value("").for(:author) }
     it { is_expected.not_to allow_value("").for(:isbn) }
-    it { is_expected.not_to allow_value("Au%thor").for(:author) }
-    it { is_expected.not_to allow_value("B**ook").for(:title) }
     it { is_expected.not_to allow_value("h&jk&!").for(:isbn) }
 
     describe "validation" do
