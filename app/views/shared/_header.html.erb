@@ -1,0 +1,12 @@
+<nav class="fixed top-0 left-0 z-20 w-full border-b border-gray-200 bg-gray-50 dark:bg-gray-900 dark:border-gray-600">
+  <div class="flex justify-between block w-full lg:flex lg:items-center lg:w-auto">
+    <%= link_to "OnLibrary", books_path, class: "self-center text-2xl font-semibold whitespace-nowrap duration-300 transform dark:text-gray-400" %>
+
+      <% if user_signed_in? %>
+        <span class="mr-2 text-gray-500 duration-300 transform dark:text-gray-400">Hello, <%= current_user.email %></span>
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn-light m-3.5 " %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path, class: "btn-light m-3.5" %>
+      <% end %>
+  </div>
+</nav>

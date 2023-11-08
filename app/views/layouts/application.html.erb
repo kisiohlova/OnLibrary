@@ -11,18 +11,14 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <header>
-      <%= render 'books/header' %>
-    </header>
-    <div class="container mx-auto mt-20 px-5 flex">
-      <%= render 'layouts/notice' %>
+  <body class="bg-white dark:bg-gray-900">
+    <%= render 'shared/header' %>
+    <div class="container flex px-5 mx-auto mt-20">
+      <%= render 'shared/notice' %>
     </div>
-    <main class="container mx-auto mt-6 px-5 flex">
+    <main class="container flex justify-center px-5 mx-auto mt-6">
       <%= yield %>
     </main>
-    <footer>
-      <%= render 'books/footer' %>
-    </footer>
+    <%= render 'shared/footer' %>
   </body>
 </html>
