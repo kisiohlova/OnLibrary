@@ -1,6 +1,6 @@
 @layer components {
   .form-container {
-    @apply w-1/2 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700;
+    @apply w-1/2 p-4 mx-auto bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700;
   }
 
   .form-body {
@@ -8,11 +8,11 @@
   }
 
   .form-title {
-    @apply mb-6 text-3xl text-center text-gray-500 duration-300 transform dark:text-gray-400;
+    @apply pt-6 mb-6 text-3xl text-center text-gray-500 dark:text-gray-400;
   }
 
   .form-input-container {
-    @apply relative z-0 w-full mb-6 group;
+    @apply relative z-0 w-full mb-6;
   }
 
   .form-input-field {
@@ -20,7 +20,7 @@
   }
 
   .form-input-label {
-    @apply peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] focus:left-0 focus:text-blue-600 focus:dark:text-blue-500 placeholder-shown:scale-100 placeholder-shown:translate-y-0 focus:scale-75 focus:-translate-y-6;
+    @apply peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 -translate-y-6 scale-75 top-3 -z-10 origin-[0] focus:left-0 focus:text-blue-600 focus:dark:text-blue-500 placeholder-shown:scale-100 placeholder-shown:translate-y-0 focus:scale-75 focus:-translate-y-6;
   }
 
   .form-btn-submit {
@@ -32,7 +32,7 @@
   }
 
   .form-checkbox-label {
-    @apply ml-2 text-sm font-medium text-gray-500 duration-300 transform dark:text-gray-400;
+    @apply ml-2 text-sm font-medium text-gray-500 dark:text-gray-400;
   }
 
   .form-link {

@@ -1,5 +1,5 @@
-<div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <%= link_to book.title, book, class: "mb-2 text-2xl font-extrabold tracking-tight duration-300 transform dark:text-gray-300" %>
-    <p class="mb-3 font-bold duration-300 transform dark:text-gray-400"><%= book.author %></p>
+<div class="m-3.5 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <%= link_to book.title, book, class: "mb-2 text-2xl font-extrabold tracking-tight dark:text-gray-300 no-underline hover:underline" %>
+    <p class="mb-3 font-bold dark:text-gray-400"><%= book.author %></p>
     <p class="mb-3 font-normal text-gray-700 break-all dark:text-gray-400"><%= book.description %></p>
 </div>

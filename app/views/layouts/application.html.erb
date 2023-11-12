@@ -12,11 +12,13 @@
   </head>
 
   <body class="bg-white dark:bg-gray-900">
-    <%= render 'shared/header' %>
-    <div class="container flex px-5 mx-auto mt-20">
+    <header class="fixed w-full z-1000">
+      <%= render 'shared/header' %>
+    </header>
+    <div class="container flex px-5 mt-20 mr-4">
       <%= render 'shared/notice' %>
     </div>
-    <main class="container flex justify-center px-5 mx-auto mt-6">
+    <main class="w-full">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>

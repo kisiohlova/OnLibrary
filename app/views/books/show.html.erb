@@ -1,16 +1,13 @@
 <section class="bg-white dark:bg-gray-900">
-    <div class="max-w-screen-xl py-8 mx-auto text-center lg:py-16">
-        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 duration-300 transform md:text-5xl lg:text-6xl dark:text-gray-300"><%= @book.title%></h1>
-        <h3 class="mb-4 text-xl font-bold leading-none tracking-tight text-gray-900 duration-300 transform md:text-xl lg:text-xl dark:text-gray-400">by <%=@book.author%></h3>
-        <h3 class="mb-4 font-normal leading-none tracking-tight text-gray-900 duration-300 transform text-l md:text-l lg:text-l dark:text-gray-400">ISBN: <%=@book.isbn%></h3>
-        <p class="mb-8 text-lg font-normal text-gray-500 break-all lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400"><%= @book.description%></p>
-
-        <%= link_to "Edit this book", edit_book_path(@book), class: "btn-light" %>
-        <div class="inline-block ml-2">
-            <%= button_to "Destroy this book", book_path(@book), method: :delete, class: "btn-light" %>
-        </div>
-
-        <%= link_to "Back to Books", books_path, class: "btn-light" %>
-
+  <div class="max-w-screen-xl py-8 mx-auto text-center lg:py-16">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 duration-300 transform md:text-5xl lg:text-6xl dark:text-gray-300"><%= @book.title%></h1>
+    <h3 class="mb-4 text-xl font-bold leading-none tracking-tight text-gray-900 duration-300 transform md:text-xl lg:text-xl dark:text-gray-400">by <%=@book.author%></h3>
+    <h3 class="mb-4 font-normal leading-none tracking-tight text-gray-900 duration-300 transform text-l md:text-l lg:text-l dark:text-gray-400">ISBN: <%=@book.isbn%></h3>
+    <p class="mb-8 text-lg font-normal text-gray-500 break-all lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400"><%= @book.description%></p>
+    <%= link_to "Edit this book", edit_book_path(@book), class: "btn-light" %>
+    <div class="flex justify-center m-4">
+      <%= button_to "Destroy this book", book_path(@book), method: :delete, class: "btn-light" %>
+      <%= link_to "Back to Books", books_path, class: "btn-light" %>
     </div>
+  </div>
 </section>

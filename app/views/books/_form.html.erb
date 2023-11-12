@@ -1,31 +1,30 @@
-<div class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-  <div class="w-full">
+<div class="form-container">
+  <div class="form-body">
     <%= simple_form_for(book, url: polymorphic_path(book)) do |f| %>
       <div class="my-5">
         <%= f.input :title,
                     required: true,
-                    autofocus: true,
-                    input_html: { class: "block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer", placeholder: "The Adventures of Sherlock Holmes" },
-                    label_html: { class: "peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" } %>
+                    input_html: { class: "form-input-field", placeholder: "The Adventures of Sherlock Holmes" },
+                    label_html: { class: "form-input-label" } %>
       </div>
 
       <div class="my-5">
         <%= f.input :author,
-                    required: true,
-                    input_html: { class: "block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer", placeholder: "Arthur Conan Doyle" },
-                    label_html: { class: "peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" }%>
+                    input_html: { class: "form-input-field", placeholder: "Arthur Conan Doyle" },
+                    label_html: { class: "form-input-label" }%>
       </div>
 
       <div class="my-5">
         <%= f.input :isbn,
-                    input_html: { class: "block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer", placeholder: "9780192823" },
-                    label_html: { class: "peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" }%>
+                    hint: ("Enter a valid ISBN with 10 or 13 digits, and optional hyphens."),
+                    input_html: { class: "form-input-field", placeholder: "97-801-9-28-23" },
+                    label_html: { class: "form-input-label" }%>
       </div>
 
       <div class="my-5">
         <%= f.input :description,
-                    input_html: { class: "block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" },
-                    label_html: { class: "peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" } %>
+                    input_html: { class: "form-input-field" },
+                    label_html: { class: "form-input-label" } %>
       </div>
 
 
