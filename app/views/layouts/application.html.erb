@@ -11,18 +11,16 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <header>
-      <%= render 'books/header' %>
+  <body class="bg-white dark:bg-gray-900">
+    <header class="fixed w-full z-1000">
+      <%= render 'shared/header' %>
     </header>
-    <div class="container mx-auto mt-20 px-5 flex">
-      <%= render 'layouts/notice' %>
+    <div class="container flex px-5 mt-20 mr-4">
+      <%= render 'shared/notice' %>
     </div>
-    <main class="container mx-auto mt-6 px-5 flex">
+    <main class="w-full">
       <%= yield %>
     </main>
-    <footer>
-      <%= render 'books/footer' %>
-    </footer>
+    <%= render 'shared/footer' %>
   </body>
 </html>

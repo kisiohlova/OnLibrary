@@ -13,6 +13,7 @@ gem "tailwindcss-rails"
 gem "simple_form"
 gem "tzinfo-data"
 gem "bootsnap", require: false
+gem "devise", "~> 4.9", ">= 4.9.2"
 
 group :development, :test do
   gem "debug", platforms: [:mri, :mingw, :x64_mingw]
