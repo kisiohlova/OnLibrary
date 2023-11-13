@@ -1,21 +1,35 @@
-<%= simple_form_for(book, url: polymorphic_path(book), defaults: { input_html: { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } }) do |f| %>
-  <div class="my-5">
-      <%= f.input :title, placeholder: "The Adventures of Sherlock Holmes" %>
-  </div>
+<div class="form-container">
+  <div class="form-body">
+    <%= simple_form_for(book, url: polymorphic_path(book)) do |f| %>
+      <div class="my-5">
+        <%= f.input :title,
+                    required: true,
+                    input_html: { class: "form-input-field", placeholder: "The Adventures of Sherlock Holmes" },
+                    label_html: { class: "form-input-label" } %>
+      </div>
 
-  <div class="my-5">
-      <%= f.input :author, placeholder: "Arthur Conan Doyle" %>
-  </div>
+      <div class="my-5">
+        <%= f.input :author,
+                    input_html: { class: "form-input-field", placeholder: "Arthur Conan Doyle" },
+                    label_html: { class: "form-input-label" }%>
+      </div>
 
-  <div class="my-5">
-      <%= f.input :isbn, placeholder: "9780192823" %>
-  </div>
+      <div class="my-5">
+        <%= f.input :isbn,
+                    hint: ("Enter a valid ISBN with 10 or 13 digits, and optional hyphens."),
+                    input_html: { class: "form-input-field", placeholder: "97-801-9-28-23" },
+                    label_html: { class: "form-input-label" }%>
+      </div>
 
-  <div class="my-5">
-    <%= f.input :description %>
-  </div>
+      <div class="my-5">
+        <%= f.input :description,
+                    input_html: { class: "form-input-field" },
+                    label_html: { class: "form-input-label" } %>
+      </div>
 
-  <div class="my-5">
-    <%= f.button :submit, class: "btn-light" %>
+
+        <%= f.button :submit, class: "btn-light" %>
+
+    <% end %>
   </div>
-<% end %>
+</div>
