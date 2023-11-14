@@ -1,7 +1,9 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Book, type: :model do
-  describe "validations" do
+  let(:book) { create(:book, :with_cover, :with_content) }
+
+  context "validations" do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:author) }
     it { is_expected.to validate_presence_of(:isbn) }
@@ -12,11 +14,23 @@ RSpec.describe Book, type: :model do
     it { is_expected.not_to allow_value("").for(:author) }
     it { is_expected.not_to allow_value("").for(:isbn) }
     it { is_expected.not_to allow_value("h&jk&!").for(:isbn) }
+  end
 
-    describe "validation" do
-      subject { Book.new(title: "Book", author: "Author", isbn: "978-3-16-148410-0") }
+  context "isbn validation" do
+    subject { Book.new(title: "Book", author: "Author", isbn: "978-3-16-148410-0") }
 
-      it { is_expected.to validate_uniqueness_of(:isbn).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:isbn).case_insensitive }
+  end
+
+  context "attachments" do
+    it { is_expected.to have_one_attached(:cover) }
+    it { is_expected.to have_one_attached(:content) }
+  end
+
+  context "book with cover and content" do
+    it "has attached" do
+      expect(book.cover).to be_attached
+      expect(book.content).to be_attached
     end
   end
 end
