@@ -1,0 +1,21 @@
+@layer components {
+  .book-container {
+    @apply m-3.5 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-700 dark:border-gray-600 flex;
+  }
+
+  .book-cover {
+    @apply object-cover w-32 h-48 mb-3 mr-4;
+  }
+
+  .book-title {
+    @apply mb-2 text-2xl font-extrabold tracking-tight no-underline dark:text-gray-300 hover:underline;
+  }
+
+  .book-author {
+    @apply mb-3 font-bold dark:text-gray-400;
+  }
+
+  .book-description {
+    @apply mb-3 font-normal text-gray-700 break-all dark:text-gray-400;
+  }
+}

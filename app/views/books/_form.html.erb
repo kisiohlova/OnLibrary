@@ -7,29 +7,37 @@
                     input_html: { class: "form-input-field", placeholder: "The Adventures of Sherlock Holmes" },
                     label_html: { class: "form-input-label" } %>
       </div>
-
       <div class="my-5">
         <%= f.input :author,
                     input_html: { class: "form-input-field", placeholder: "Arthur Conan Doyle" },
                     label_html: { class: "form-input-label" }%>
       </div>
-
       <div class="my-5">
         <%= f.input :isbn,
                     hint: ("Enter a valid ISBN with 10 or 13 digits, and optional hyphens."),
                     input_html: { class: "form-input-field", placeholder: "97-801-9-28-23" },
                     label_html: { class: "form-input-label" }%>
       </div>
-
       <div class="my-5">
         <%= f.input :description,
                     input_html: { class: "form-input-field" },
                     label_html: { class: "form-input-label" } %>
       </div>
-
-
-        <%= f.button :submit, class: "btn-light" %>
-
+      <div class="my-5">
+        <%= f.label :cover, "Book cover", class: "form-file-label" %>
+        <% if f.object.cover.attached? %>
+          <p class="form-file-label">Current Cover: <%= f.object.cover.filename %></p>
+        <% end %>
+        <%= f.input :cover, as: :file, input_html: { class: "form-file-field" }, label: false %>
+      </div>
+      <div class="my-5">
+        <%= f.label :content, "PDF file", class: "form-file-label" %>
+        <% if f.object.content.attached? %>
+          <p class="form-file-label">Current PDF: <%= f.object.content.filename %></p>
+        <% end %>
+        <%= f.input :content, as: :file, input_html: { class: "form-file-field" }, label: false %>
+      </div>
+        <%= f.button :submit, class: "form-btn-submit" %>
     <% end %>
   </div>
 </div>

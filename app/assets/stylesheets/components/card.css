@@ -1,0 +1,33 @@
+@layer components {
+  .card {
+    @apply bg-white dark:bg-gray-800;
+  }
+
+  .card-container {
+    @apply max-w-screen-xl py-8 mx-auto text-center lg:py-16;
+  }
+
+  .card-flex {
+    @apply flex items-center mx-auto mb-4;
+  }
+
+  .card-book-cover {
+    @apply object-cover w-64 mr-4 h-96;
+  }
+
+  .card-title {
+    @apply mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-gray-300;
+  }
+
+  .card-author {
+    @apply mb-4 text-xl font-bold leading-none tracking-tight text-gray-900 md:text-xl lg:text-xl dark:text-gray-400;
+  }
+
+  .card-isbn {
+    @apply mb-4 text-base font-normal leading-none tracking-tight text-gray-900 md:text-base lg:text-base dark:text-gray-400;
+  }
+
+  .card-description {
+    @apply mb-8 text-lg font-normal text-gray-500 break-all lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400;
+  }
+}
