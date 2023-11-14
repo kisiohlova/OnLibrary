@@ -1,4 +1,7 @@
 class Book < ApplicationRecord
+  has_one_attached :cover, dependent: :destroy
+  has_one_attached :content, dependent: :destroy
+
   validates :title, :author, :isbn, presence: true
   validates :title, length: { maximum: 150 }
   validates :description, length: { maximum: 1000 }
