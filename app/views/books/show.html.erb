@@ -1,13 +1,34 @@
-<section class="bg-white dark:bg-gray-900">
-  <div class="max-w-screen-xl py-8 mx-auto text-center lg:py-16">
-    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 duration-300 transform md:text-5xl lg:text-6xl dark:text-gray-300"><%= @book.title%></h1>
-    <h3 class="mb-4 text-xl font-bold leading-none tracking-tight text-gray-900 duration-300 transform md:text-xl lg:text-xl dark:text-gray-400">by <%=@book.author%></h3>
-    <h3 class="mb-4 font-normal leading-none tracking-tight text-gray-900 duration-300 transform text-l md:text-l lg:text-l dark:text-gray-400">ISBN: <%=@book.isbn%></h3>
-    <p class="mb-8 text-lg font-normal text-gray-500 break-all lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400"><%= @book.description%></p>
-    <%= link_to "Edit this book", edit_book_path(@book), class: "btn-light" %>
-    <div class="flex justify-center m-4">
+<section class="card">
+  <div class="card-container">
+    <div class="card-flex">
+      <% if @book.cover.attached? %>
+        <div class="flex-shrink-0">
+          <%= image_tag @book.cover, class: "card-book-cover" %>
+        </div>
+      <% else %>
+        <div class="flex-shrink-0">
+          <%= image_tag 'default_book_cover.jpg', class: "card-book-cover" %>
+        </div>
+      <% end %>
+      <div >
+        <h1 class="card-title"><%= @book.title%></h1>
+        <h3 class="card-author">by <%= @book.author%></h3>
+        <h3 class="card-isbn">ISBN: <%= @book.isbn%></h3>
+        <p class="card-description"><%= @book.description%></p>
+      </div>
+    </div>
+    <div class="p-2 mb-4">
+      <% if user_signed_in? && @book.content.attached? %>
+        <%= link_to 'View PDF', rails_blob_path(@book.content, disposition: 'inline'), target: '_blank', class: "btn-light" %>
+        <%= link_to 'Download PDF', rails_blob_path(@book.content, disposition: 'attachment'), class: "btn-light" %>
+      <% end %>
+    </div>
+    <% if user_signed_in? %>
+      <%= link_to "Edit this book", edit_book_path(@book), class: "btn-light" %>
+      <div class="flex justify-center m-4">
       <%= button_to "Destroy this book", book_path(@book), method: :delete, class: "btn-light" %>
-      <%= link_to "Back to Books", books_path, class: "btn-light" %>
+    <% end %>
+    <%= link_to "Back to Books", books_path, class: "btn-light" %>
     </div>
   </div>
 </section>

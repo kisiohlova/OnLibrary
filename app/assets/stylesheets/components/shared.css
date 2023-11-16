@@ -1,0 +1,45 @@
+@layer components {
+  .footer {
+    @apply m-4 mt-auto bg-white rounded-lg shadow dark:bg-gray-900;
+  }
+
+  .footer-container {
+    @apply w-full max-w-screen-xl p-4 mx-auto md:flex md:items-center md:justify-between;
+  }
+
+  .footer-text {
+    @apply text-sm text-gray-500 sm:text-center dark:text-gray-400;
+  }
+
+  .footer-ul {
+    @apply flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0;
+  }
+
+  .footer-li {
+    @apply mr-4 hover:underline md:mr-6;
+  }
+
+  .nav {
+    @apply fixed top-0 left-0 z-20 w-full border-b border-gray-200 bg-gray-50 dark:bg-gray-900 dark:border-gray-600;
+  }
+
+  .nav-container {
+    @apply flex items-center justify-between w-full lg:w-auto;
+  }
+
+  .nav-element-container {
+    @apply flex items-center space-x-4;
+  }
+
+  .nav-name {
+    @apply mr-4 text-2xl font-semibold duration-300 transform whitespace-nowrap dark:text-gray-400;
+  }
+
+  .nav-element {
+    @apply flex-shrink-0 text-xl font-semibold text-gray-700 duration-300 transform whitespace-nowrap dark:text-gray-400;
+  }
+
+  .nav-user {
+    @apply mr-2 text-gray-500 duration-300 transform dark:text-gray-400;
+  }
+}
