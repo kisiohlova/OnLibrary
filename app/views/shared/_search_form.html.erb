@@ -1,0 +1,6 @@
+<%= simple_form_for :search, url: search_books_path, method: :get, html: { class: "flex items-center" } do |f| %>
+  <div class="relative w-full">
+    <%= f.input :query, as: :string, label: false,
+                input_html: { id: "simple-search", class: "search-form", placeholder: "Search...", required: true } %>
+  </div>
+<% end %>
