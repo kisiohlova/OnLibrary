@@ -11,10 +11,9 @@
           <%= image_tag "default_book_cover.jpg", class: "card-img" %>
         </div>
       <% end %>
-        <div class="flex justify-between m-4 space-x-0">
+        <div class="flex justify-center m-4">
         <% if user_signed_in? && @book.content.attached? %>
-          <%= link_to "Read online", rails_blob_path(@book.content, disposition: "inline"), target: "_blank", class: "card-link" %>
-          <%= link_to "Download", rails_blob_path(@book.content, disposition: "attachment"), class: "card-link" %>
+          <%= link_to "Read online", "#pdf-viewer", class: "card-link" %>
         <% end %>
         </div>
       </div>
@@ -35,3 +34,18 @@
     </div>
   </div>
 </section>
+
+<% if user_signed_in? %>
+  <div id="pdf-viewer" class="w-9/12 h-screen m-auto mb-5"></div>
+
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script>
+    document.addEventListener("adobe_dc_view_sdk.ready", function () {
+      var adobeDCView = new AdobeDC.View({ clientId: "<%= @adobe_pdf_api_key %>", divId: "pdf-viewer" });
+      adobeDCView.previewFile({
+        content: { location: { url: "<%= rails_blob_path(@book.content, only_path: true) %>" } },
+        metaData: { fileName: "<%= @book.content.filename %>" },
+      });
+    });
+  </script>
+<% end %>
