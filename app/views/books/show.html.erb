@@ -35,7 +35,7 @@
   </div>
 </section>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && @book.content.attached? %>
   <div id="pdf-viewer" class="w-9/12 h-screen m-auto mb-5"></div>
 
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
@@ -43,7 +43,8 @@
   <script>
     const previewConfig = {
       showDownloadPDF: false,
-      showPrintPDF: false
+      showPrintPDF: false,
+      showAnnotationTools: false
     }
 
     document.addEventListener("adobe_dc_view_sdk.ready", function () {
