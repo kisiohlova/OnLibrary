@@ -39,13 +39,19 @@
   <div id="pdf-viewer" class="w-9/12 h-screen m-auto mb-5"></div>
 
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+
   <script>
+    const previewConfig = {
+      showDownloadPDF: false,
+      showPrintPDF: false
+    }
+
     document.addEventListener("adobe_dc_view_sdk.ready", function () {
       var adobeDCView = new AdobeDC.View({ clientId: "<%= @adobe_pdf_api_key %>", divId: "pdf-viewer" });
       adobeDCView.previewFile({
         content: { location: { url: "<%= rails_blob_path(@book.content, only_path: true) %>" } },
         metaData: { fileName: "<%= @book.content.filename %>" },
-      });
+      }, previewConfig);
     });
   </script>
 <% end %>
