@@ -45,10 +45,12 @@ class BooksController < ApplicationController
     @search_query = params[:search][:query]
     @search_results = BookSearch.search(@search_query)
 
+    return redirect_to books_path, alert: "Search request can't be empty. Please try again." if @search_query.blank?
+
     if @search_results.any?
       flash.now[:notice] = "Books found: #{@search_results.count}"
     else
-      redirect_to books_path, notice: "No books found for '#{@search_query}'."
+      redirect_to books_path, alert: "No books found for '#{@search_query}'."
       return
     end
 
