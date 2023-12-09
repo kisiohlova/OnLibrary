@@ -1,6 +1,12 @@
 class Book < ApplicationRecord
+  update_index("books") { self }
+
   has_one_attached :cover, dependent: :destroy
   has_one_attached :content, dependent: :destroy
+
+  validates :cover, content_type: { in: ["image/jpeg", "image/png"], message: "must be a valid image format (.png, .jpeg, .jpg)" }
+  validates :content, content_type: { in: ["application/pdf"], message: "must be a PDF file" }
+
 
   validates :title, :author, :isbn, presence: true
   validates :title, length: { maximum: 150 }

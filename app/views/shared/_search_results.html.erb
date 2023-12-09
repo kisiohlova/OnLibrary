@@ -1,0 +1,19 @@
+<% if @search_results.present? %>
+<div class="search-result-container">
+    <h1 class="search-result-text">Search Results</h1>
+  </div>
+  <% @search_results.each do |book| %>
+    <div class="book-container">
+  <% if book.cover.attached? %>
+    <div class="flex-shrink-0">
+    <%= image_tag book.cover, class: "book-cover", style: "object-fit: cover;" %>
+    </div>
+  <% end %>
+  <div class="flex-grow">
+    <%= link_to book.title, book, class: "book-title" %>
+    <p class="book-author"><%= book.author %></p>
+    <p class="book-description"><%= book.description %></p>
+  </div>
+</div>
+  <% end %>
+<% end %>

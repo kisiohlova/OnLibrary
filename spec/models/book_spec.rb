@@ -33,4 +33,20 @@ RSpec.describe Book, type: :model do
       expect(book.content).to be_attached
     end
   end
+
+  context "validate attachments content type" do
+    it do
+      is_expected.to validate_content_type_of(:cover)
+        .allowing('image/png', 'image/jpeg')
+        .rejecting('text/plain', 'text/xml')
+        .with_message('must be a valid image format (.png, .jpeg, .jpg)')
+    end
+
+    it do
+      is_expected.to validate_content_type_of(:content)
+      .allowing("application/pdf")
+      .rejecting("text/plain", "image/jpeg")
+      .rejecting("text/plain", "image/jpeg").with_message("must be a PDF file")
+    end
+  end
 end

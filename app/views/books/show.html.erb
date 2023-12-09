@@ -1,28 +1,31 @@
 <section class="card">
   <div class="card-container">
     <div class="card-flex">
+      <div>
       <% if @book.cover.attached? %>
-        <div class="flex-shrink-0">
-          <%= image_tag @book.cover, class: "card-book-cover" %>
+        <div class="card-book-cover">
+          <%= image_tag @book.cover, class: "card-img" %>
         </div>
       <% else %>
-        <div class="flex-shrink-0">
-          <%= image_tag 'default_book_cover.jpg', class: "card-book-cover" %>
+        <div class="card-book-cover">
+          <%= image_tag "default_book_cover.jpg", class: "card-img" %>
         </div>
       <% end %>
-      <div >
+        <div class="flex justify-between m-4 space-x-0">
+        <% if user_signed_in? && @book.content.attached? %>
+          <%= link_to "Read online", rails_blob_path(@book.content, disposition: "inline"), target: "_blank", class: "card-link" %>
+          <%= link_to "Download", rails_blob_path(@book.content, disposition: "attachment"), class: "card-link" %>
+        <% end %>
+        </div>
+      </div>
+      <div class="flex-auto">
         <h1 class="card-title"><%= @book.title%></h1>
         <h3 class="card-author">by <%= @book.author%></h3>
         <h3 class="card-isbn">ISBN: <%= @book.isbn%></h3>
         <p class="card-description"><%= @book.description%></p>
       </div>
     </div>
-    <div class="p-2 mb-4">
-      <% if user_signed_in? && @book.content.attached? %>
-        <%= link_to 'View PDF', rails_blob_path(@book.content, disposition: 'inline'), target: '_blank', class: "btn-light" %>
-        <%= link_to 'Download PDF', rails_blob_path(@book.content, disposition: 'attachment'), class: "btn-light" %>
-      <% end %>
-    </div>
+
     <% if user_signed_in? %>
       <%= link_to "Edit this book", edit_book_path(@book), class: "btn-light" %>
       <div class="flex justify-center m-4">

@@ -12,7 +12,11 @@
   }
 
   .card-book-cover {
-    @apply object-cover w-64 mr-4 h-96;
+    @apply flex-shrink-0 object-cover w-64 ml-4 mr-4 h-96;
+  }
+
+  .card-img {
+    @apply object-cover w-full h-full;
   }
 
   .card-title {
@@ -29,5 +33,9 @@
 
   .card-description {
     @apply mb-8 text-lg font-normal text-gray-500 break-all lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400;
+  }
+
+  .card-link {
+    @apply px-5 py-2.5 mr-2 mb-2 font-medium text-blue-600 dark:text-blue-500 hover:underline;
   }
 }

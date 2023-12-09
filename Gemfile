@@ -14,6 +14,8 @@ gem "simple_form"
 gem "tzinfo-data"
 gem "bootsnap", require: false
 gem "devise", "~> 4.9", ">= 4.9.2"
+gem "chewy", "~> 7.3", ">= 7.3.4"
+gem "active_storage_validations", "~> 1.0", ">= 1.0.4"
 
 group :development, :test do
   gem "debug", platforms: [:mri, :mingw, :x64_mingw]

@@ -12,14 +12,15 @@
   </head>
   <body class="bg-white dark:bg-gray-800">
     <header class="fixed w-full">
-      <%= render 'shared/header' %>
+      <%= render "shared/header" %>
     </header>
     <div class="container flex px-5 mt-20 mr-4">
-      <%= render 'shared/notice' %>
+      <%= render "shared/notice" %>
     </div>
+    <%= render "shared/search_results", search_results: @search_results %>
     <main class="w-full">
       <%= yield %>
     </main>
-    <%= render 'shared/footer' %>
+    <%= render "shared/footer" %>
   </body>
 </html>
