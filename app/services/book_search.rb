@@ -1,7 +1,21 @@
 class BookSearch
   def self.search(query)
-    search_results = BooksIndex.query(query_string: {fields: [:title, :author, :description], query: query}).to_a
-    book_ids = search_results.map(&:id)
-    Book.where(id: book_ids)
+    return Book.none if query.blank?
+
+    search_results = BooksIndex.query(
+      multi_match: {
+        query: query,
+        fields: search_fields,
+        operator: "and"
+      }
+    ).load
+
+    Book.where(id: search_results.map(&:id))
+  end
+
+  private
+
+  def self.search_fields
+    [:title, :author, :description]
   end
 end
