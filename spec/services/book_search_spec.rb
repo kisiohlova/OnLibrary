@@ -10,30 +10,40 @@ RSpec.describe BookSearch do
   end
 
   describe ".search" do
-    it "returns books matching the query" do
-      search_results = BookSearch.search("ruby")
+    subject { BookSearch.search(query) }
 
-      expect(search_results.size).to eq(2)
-      expect(search_results).to match_array([book1, book2])
+    context "when searching for 'ruby'" do
+      let(:query) { "ruby" }
+
+      it "returns books matching the query" do
+        expect(subject.size).to eq(2)
+        expect(subject).to match_array([book1, book2])
+      end
     end
 
-    it "the books with author exists" do
-      search_results = BookSearch.search("Doe")
+    context "when searching for 'Doe'" do
+      let(:query) { "Doe" }
 
-      expect(search_results).to include(book1)
+      it "returns books with the author 'Doe'" do
+        expect(subject).to include(book1)
+      end
     end
 
-    it "the books with description exists" do
-      search_results = BookSearch.search("Learn")
+    context "when searching for 'Learn'" do
+      let(:query) { "Learn" }
 
-      expect(search_results.size).to eq(2)
-      expect(search_results).to match_array([book1, book2])
+      it "returns books with the description containing 'Learn'" do
+        expect(subject.size).to eq(2)
+        expect(subject).to match_array([book1, book2])
+      end
     end
 
-    it "the book does not exist" do
-      search_results = BookSearch.search("Title")
+    context "when searching for 'Title'" do
+      let(:query) { "Title" }
 
-      expect(search_results).to be_empty
+      it "returns an empty result" do
+        expect(subject).to be_empty
+      end
     end
   end
 end
