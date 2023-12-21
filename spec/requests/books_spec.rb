@@ -5,6 +5,9 @@ RSpec.describe BooksController, type: :request do
   let(:valid_attributes) { FactoryBot.attributes_for(:book) }
   let(:invalid_attributes) { { title: "" } }
   let(:new_attributes) { attributes_for(:book) }
+  let(:book_with_content) { create(:book, :with_cover, :with_content) }
+  let(:attached_file_name) { book_with_content.content.filename.to_s }
+  let!(:user) { FactoryBot.create :user }
 
   describe "GET #index" do
     it "is successful" do
@@ -21,6 +24,21 @@ RSpec.describe BooksController, type: :request do
 
       expect(response).to be_successful
       expect(response.body).to include(CGI.escapeHTML(book.title))
+    end
+
+    it "displays the content PDF for an authorized user" do
+      sign_in user
+
+      get book_path(book_with_content)
+
+      expect(response).to be_successful
+      expect(response.body).to include(attached_file_name)
+    end
+
+    it "does not display the content PDF for an unauthorized user" do
+      get book_path(book)
+
+      expect(response.body).not_to include(attached_file_name)
     end
   end
 
