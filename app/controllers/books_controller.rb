@@ -5,7 +5,6 @@ class BooksController < ApplicationController
 
   def show
     @book = resource
-    @adobe_pdf_api_key = ENV["ADOBE_PDF_API_KEY"]
   end
 
   def new
